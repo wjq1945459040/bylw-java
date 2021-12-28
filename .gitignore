@@ -31,7 +31,6 @@ rebel.xml
 
 # IDEA
 .idea/
-
 *.iml
 
 # eclipse
