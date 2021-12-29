@@ -1,0 +1,40 @@
+.DS_Store
+node_modules
+/dist
+/public/monaco-editor
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 编辑器
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# java
+*.class
+bin
+build
+classes/
+target/
+rebel.xml
+*.lic
+*.bak
+
+# IDEA
+.idea/
+*.iml
+
+# eclipse
+.metadata/
+.settings/
+.classpath
+.project
