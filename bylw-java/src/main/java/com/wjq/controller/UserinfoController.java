@@ -4,19 +4,22 @@ package com.wjq.controller;
 import cn.hutool.json.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import org.springframework.beans.BeanUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wjq.common.lang.Result;
 import com.wjq.entity.Userinfo;
 import com.wjq.service.UserinfoService;
 import com.wjq.shiro.AccountProfile;
+import com.wjq.utils.FastDFSClientUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -32,6 +35,9 @@ public class UserinfoController {
 
     @Autowired
     UserinfoService userinfoService;
+
+    @Autowired
+    private FastDFSClientUtil dfsClient;
 
     @PostMapping("/userlist")
     public Result list(@RequestBody JSONObject json) {
@@ -71,6 +77,20 @@ public class UserinfoController {
         userinfoService.saveOrUpdate(userinfo);
 
         return new Result().success(null);
+    }
+
+    //用户上传头像（上传到阿里云的fastfdfs，返回url，数据库存入url）
+    @PostMapping("/user/uploadavatar")
+    public Result getUserUploadAvatarPath(@RequestParam("file") MultipartFile file) {
+        String fileUrl = null;
+        try {
+            fileUrl = dfsClient.uploadFile(file);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new Result().success(fileUrl);
     }
 
     @PostMapping("/user/delete")

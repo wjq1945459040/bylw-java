@@ -86,6 +86,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <!--   整合fastfdfs     -->
+        <dependency>
+            <groupId>com.github.tobato</groupId>
+            <artifactId>fastdfs-client</artifactId>
+            <version>1.26.5</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
