@@ -79,7 +79,9 @@ public class UserinfoController {
         return new Result().success(null);
     }
 
-    //用户上传头像（上传到阿里云的fastfdfs，返回url，数据库存入url）
+    /*
+     *  用户上传头像（上传到阿里云的fastfdfs，返回url，数据库存入url）
+     */
     @PostMapping("/user/uploadavatar")
     public Result getUserUploadAvatarPath(@RequestParam("file") MultipartFile file) {
         String fileUrl = null;
@@ -93,6 +95,9 @@ public class UserinfoController {
         return new Result().success(fileUrl);
     }
 
+    /*
+     * 删除用户
+     */
     @PostMapping("/user/delete")
     public Result delete(@RequestParam String id) {
 

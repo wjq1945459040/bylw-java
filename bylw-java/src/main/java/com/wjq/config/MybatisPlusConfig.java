@@ -1,5 +1,6 @@
 package com.wjq.config;
 
+import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.aop.interceptor.PerformanceMonitorInterceptor;
@@ -21,17 +22,17 @@ public class MybatisPlusConfig {
 
     @Bean
     public PaginationInterceptor paginationInterceptor() {
-        return  new PaginationInterceptor();
+        return new PaginationInterceptor();
     }
 
-//    @Bean
-//    public OptimisticLockerInnerInterceptor mybatisPlusInterceptor() {
-//
-//        return new OptimisticLockerInnerInterceptor();
-//    }
+    //注册乐观锁插件
+    @Bean
+    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+        return new OptimisticLockerInterceptor();
+    }
 
     @Bean
-    @Profile({"dev","test"})
+    @Profile({"dev", "test"})
     public PerformanceMonitorInterceptor performanceMonitorInterceptor() {
         PerformanceMonitorInterceptor interceptor = new PerformanceMonitorInterceptor();
         interceptor.setUseDynamicLogger(true);
