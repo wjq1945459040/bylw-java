@@ -26,7 +26,7 @@ public class SelectItemsRest {
         map.put("论坛模块", "1");
         map.put("电影模块", "2");
 
-        return new Result().success(map);
+        return Result.success(map);
     }
 
     //用户状态，从后台获取
@@ -44,6 +44,6 @@ public class SelectItemsRest {
             res.add(map);
         }
 
-        return new Result().success(res);
+        return Result.success(res);
     }
 }

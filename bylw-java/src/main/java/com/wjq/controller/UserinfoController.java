@@ -60,7 +60,7 @@ public class UserinfoController {
         wrapper.orderByDesc("create_date");
         IPage<Userinfo> pageData = userinfoService.page(page, wrapper);
 
-        return new Result().success(pageData);
+        return Result.success(pageData);
     }
 
     @PostMapping("/user/save")
@@ -69,14 +69,14 @@ public class UserinfoController {
         Userinfo userinfo = userinfoService.getById(edit.getId());
 
         if (userinfo == null) {
-            return new Result().fail("用户不存在");
+            return Result.fail("用户不存在");
         }
 
         BeanUtils.copyProperties(edit, userinfo, "logid", "id", "createDate");
 
         userinfoService.saveOrUpdate(userinfo);
 
-        return new Result().success(null);
+        return Result.success(null);
     }
 
     /*
@@ -92,7 +92,7 @@ public class UserinfoController {
             e.printStackTrace();
         }
 
-        return new Result().success(fileUrl);
+        return Result.success(fileUrl);
     }
 
     /*
@@ -105,10 +105,10 @@ public class UserinfoController {
 
         if (ids.length == 1) {
             userinfoService.removeById(id);
-            return new Result().success(null);
+            return Result.success(null);
         }
 
         userinfoService.removeByIds(Arrays.asList(ids));
-        return new Result().success(null);
+        return Result.success(null);
     }
 }
